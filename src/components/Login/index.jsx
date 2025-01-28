@@ -15,7 +15,32 @@ import {
 import Logo from '../../assets/Logo.svg';
 import { Button } from '../Button';
 
+const schema = yup
+	.object({
+		email: yup
+			.string()
+			.email('O email não e valido')
+			.required('O email e obrigatorio'),
+		password: yup
+			.string()
+			.min(6, 'A senha debe ter minimo 6 caracteres')
+			.required('Digite uma senha'),
+	})
+	.required();
+
 export function Login() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(schema),
+	});
+
+	console.log(errors);
+
+	const onSubmit = (data) => console.log(data);
+
 	return (
 		<Container>
 			<LeftContainer>
@@ -29,16 +54,18 @@ export function Login() {
 					Acesse com seu<span> Login e senha.</span>
 				</Title>
 
-				<Form>
+				<Form onSubmit={handleSubmit(onSubmit)}>
 					<InputContainer>
 						{/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
 						<label>Email</label>
-						<input type="email" />
+						<input type="email" {...register('email')} />
+						<p>{errors.email?.message}</p>
 					</InputContainer>
 					<InputContainer>
 						{/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
 						<label> Senha</label>
-						<input type="password" />
+						<input type="password" {...register('password')} />
+						<p>{errors.password?.message}</p>
 					</InputContainer>
 					<Button>Entrar</Button>
 				</Form>
