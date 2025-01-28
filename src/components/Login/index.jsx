@@ -2,6 +2,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { api } from '../../services/api';
+
 import {
 	Container,
 	Form,
@@ -39,7 +41,14 @@ export function Login() {
 
 	console.log(errors);
 
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = async (data) => {
+		const response = await api.post('/session', {
+			email: data.email,
+			password: data.password,
+		});
+
+		console.log(response);
+	};
 
 	return (
 		<Container>
@@ -67,7 +76,7 @@ export function Login() {
 						<input type="password" {...register('password')} />
 						<p>{errors.password?.message}</p>
 					</InputContainer>
-					<Button>Entrar</Button>
+					<Button type="submit">Entrar</Button>
 				</Form>
 				<Link>Não possui conta? Clique aqui.</Link>
 			</RightContainer>
