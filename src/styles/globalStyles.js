@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 const globalStyles = createGlobalStyle`
 
 *{
