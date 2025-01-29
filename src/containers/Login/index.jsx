@@ -17,7 +17,7 @@ import {
 } from './styles';
 
 import Logo from '../../assets/Logo.svg';
-import { Button } from '../Button';
+import { Button } from '../../components/Button';
 
 const schema = yup
 	.object({
