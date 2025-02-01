@@ -1,7 +1,20 @@
+import { Banner, Container, Content } from './styles';
+
 export function Home() {
 	return (
 		<>
-			<h1>Seja Bem-vindo(a) ao DevBurger</h1>
+			<main>
+				<Banner>
+					<h1>Bem-vindo(a)</h1>
+				</Banner>
+
+				<Container>
+					<Content>
+						<div>carrossel categorias</div>
+						<div>carrossel prouctos</div>
+					</Content>
+				</Container>
+			</main>
 		</>
 	);
 }
