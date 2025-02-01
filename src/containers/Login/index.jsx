@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { api } from '../../services/api';
@@ -33,6 +34,8 @@ const schema = yup
 	.required();
 
 export function Login() {
+	const navigate = useNavigate();
+
 	const {
 		register,
 		handleSubmit,
@@ -44,19 +47,32 @@ export function Login() {
 	console.log(errors);
 
 	const onSubmit = async (data) => {
-		const response = await toast.promise(
-			api.post('/session', {
-				email: data.email,
-				password: data.password,
-			}),
-			{
-				pending: 'verificando seu dados',
-				success: 'Seja bem-vindo(a)',
-				error: 'email ou senha incorretos',
-			},
-		);
+		try {
+			const { status } = await api.post(
+				'/session',
+				{
+					email: data.email,
+					password: data.password,
+				},
+				{
+					validateStatus: () => true,
+				},
+			);
 
-		console.log(response);
+			if (status === 200 || status === 201) {
+				setTimeout(() => {
+					navigate('/');
+				}, 2000);
+				toast.success('Seja bem-vindo(a)');
+			} else if (status === 409) {
+				toast.error('email ou senha incorretos');
+			} else {
+				throw new Error();
+			}
+			console.log(status);
+		} catch (error) {
+			toast.error('Falha no sistema');
+		}
 	};
 
 	return (
@@ -71,7 +87,6 @@ export function Login() {
 					<br />
 					Acesse com seu<span> Login e senha.</span>
 				</Title>
-
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<InputContainer>
 						{/* biome-ignore lint/a11y/noLabelWithoutControl: <explanation> */}
@@ -87,7 +102,10 @@ export function Login() {
 					</InputContainer>
 					<Button type="submit">Entrar</Button>
 				</Form>
-				<Link>Não possui conta? Clique aqui.</Link>
+				<p>
+					Não possui conta?
+					<Link to="/cadastro">Clique aqui.</Link>
+				</p>
 			</RightContainer>
 		</Container>
 	);

@@ -1,3 +1,4 @@
+import { Link as ReactLink } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundLogin from '../../assets/bg-login.svg';
 import Background from '../../assets/bg.svg';
@@ -24,7 +25,7 @@ export const LeftContainer = styled.div`
     max-width: 50%;
 
     img{
-        width: 80%;
+        width: 65%;
     }
 `;
 
@@ -43,6 +44,17 @@ justify-content: center;
 width: 100%;
 max-width: 50%;
 height: 100%;
+
+p{
+    font-size: 18px;
+    color:#fff;
+    font-weight: 800;
+
+  a{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
 
 `;
 export const Title = styled.h2`
@@ -100,8 +112,9 @@ label{
   } 
 `;
 
-export const Link = styled.a`
+export const Link = styled(ReactLink)`
 
+text-decoration: none;
 color: #fff;
 
 `;
