@@ -48,7 +48,10 @@ export function Login() {
 
 	const onSubmit = async (data) => {
 		try {
-			const { status } = await api.post(
+			const {
+				status,
+				data: { Token },
+			} = await api.post(
 				'/session',
 				{
 					email: data.email,
@@ -70,6 +73,7 @@ export function Login() {
 				throw new Error();
 			}
 			console.log(status);
+			localStorage.setItem('token', Token);
 		} catch (error) {
 			toast.error('Falha no sistema');
 		}
