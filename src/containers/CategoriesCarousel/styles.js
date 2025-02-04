@@ -33,7 +33,7 @@ margin-bottom: 40px;
 `;
 
 export const ContainerItems = styled.div`
-background: url('${(props) => props.imageUrl}'), no-repeat;
+background: url('${(props) => props.$imageurl}');
 background-position: center;
 background-size: cover;
 width: 100%;
