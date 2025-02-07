@@ -14,17 +14,17 @@ export const Title = styled.h2`
 text-align: center;
 font-weight: 800;
 font-size:32px;
-color: #9758A6;
+color: #61A120;
 position: relative;
 padding: 20px 0;
-margin-bottom: 40px;
+margin: 40px 0;
 
 
 &::after{
     content: "";
     height: 4px;
     width: 56px;
-    background-color: #9758A6;
+    background-color: #61A120;
     position: absolute;
     bottom: 0px;
     left: calc(50% - 28px);

@@ -30,7 +30,9 @@ background:linear-gradient(
     url('${Background}');
 background-size: cover;
 background-position: center;
-height: 500px;
+
 
 `;
-export const Content = styled.div``;
+export const Content = styled.div`
+
+padding-bottom:70px`;
