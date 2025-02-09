@@ -33,6 +33,3 @@ background-position: center;
 
 
 `;
-export const Content = styled.div`
-
-padding-bottom:70px`;

@@ -3,22 +3,29 @@ import styled from 'styled-components';
 export const Container = styled.div`
 
 .carousel-item{
-padding-right: 40px;
+padding-right: 50px;
 
 }
+overflow-x:hidden;
 
-padding-left: 30px;
+.react-multi-carousel-list{
+overflow: visible ;
+}
+
+padding-left: 40px;
+padding-bottom: 40px;
+
 `;
-export const Title = styled.h2`
 
+export const Title = styled.h2`
+font-family: Poppins;
+line-height: 48px;
 text-align: center;
 font-weight: 800;
 font-size:32px;
 color: #61A120;
 position: relative;
 padding: 20px 0;
-margin: 40px 0;
-
 
 &::after{
     content: "";
@@ -30,28 +37,4 @@ margin: 40px 0;
     left: calc(50% - 28px);
 }
 
-`;
-
-export const ContainerItems = styled.div`
-background: url('${(props) => props.$imageurl}');
-background-position: center;
-background-size: cover;
-width: 100%;
-height: 230px;
-border-radius: 10px;
-display: flex;
-align-items: center;
-
-p{
-    color: #fff;
-    padding: 10px 37px;
-    background-color:rgba(0, 0, 0, 0.49);
-    border-radius: 30px;
-    font-family: Poppins;
-    font-size: 22.45px;
-    font-weight: 700;
-    margin-top:100px
-
-
-}
 `;

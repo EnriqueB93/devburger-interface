@@ -10,7 +10,8 @@ padding-right: 40px;
 padding-left: 30px;
 `;
 export const Title = styled.h2`
-
+font-family: Poppins;
+line-height: 48px;
 text-align: center;
 font-weight: 800;
 font-size:32px;
@@ -43,6 +44,8 @@ display: flex;
 align-items: center;
 
 p{
+    font-family: Poppins;
+    line-height: 33.68px;
     color: #fff;
     padding: 10px 37px;
     background-color:rgba(0, 0, 0, 0.49);
