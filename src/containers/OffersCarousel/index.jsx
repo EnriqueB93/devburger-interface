@@ -23,8 +23,6 @@ export function OffersCarousel() {
 				}));
 
 			setOffers(onlyOffers);
-
-			console.log(onlyOffers);
 		}
 		loadOffers();
 	}, []);

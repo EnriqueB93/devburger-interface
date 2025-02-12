@@ -26,6 +26,7 @@ font-size:32px;
 color: #61A120;
 position: relative;
 padding: 20px 0;
+margin-bottom: 70px;;
 
 &::after{
     content: "";

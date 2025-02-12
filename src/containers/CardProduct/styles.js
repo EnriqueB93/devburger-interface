@@ -5,13 +5,14 @@ export const Container = styled.div`
 display: flex;
 align-items: center;
 flex-direction: column;
-gap: 25px;
+gap: 40px;
 background-color: #ffffff;
 border-radius: 29px;
 padding: 25px;
 cursor: grab;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-margin-top: 70px;
+position: relative;
+
 div{
     width: 100%;
     height: 80px;
@@ -45,6 +46,6 @@ export const CardImage = styled.img`
 
 height: 100px;
 position: absolute;
-top: 10px;
+top: -50px;
 
 `;
