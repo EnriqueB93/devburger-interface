@@ -59,10 +59,10 @@ margin-top: 30px;
 export const CategoryButton = styled(Link)`
 
 font-family: Poppins;
-color: #9758A6;
+color:${(props) => (props.$isActiveCategory ? '#9758a6' : '#7b7d7d ')};
 text-decoration: none;
 font-size: 24px;
-border-bottom: 3px solid #9758a6;
+border-bottom:${(props) => props.$isActiveCategory && '3px solid #9758a6'} ;
 padding-bottom: 5px;
 line-height: 20px;
 cursor: pointer;

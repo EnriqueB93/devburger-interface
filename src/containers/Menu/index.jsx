@@ -10,9 +10,15 @@ import {
 	ProductContainer,
 } from './styles';
 
+import { useNavigate } from 'react-router-dom';
+
 export function Menu() {
 	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
+	const [filteredProducts, setFilteredProduct] = useState([]);
+	const [activeCategory, setActiveCategory] = useState([]);
+
+	const navegate = useNavigate();
 
 	useEffect(() => {
 		async function loadCategories() {
@@ -37,6 +43,17 @@ export function Menu() {
 		loadProducts();
 	}, []);
 
+	useEffect(() => {
+		if (activeCategory === 0) {
+			setFilteredProduct(products);
+		} else {
+			const newFilteredProduct = products.filter(
+				(products) => products.category_id === activeCategory,
+			);
+			setFilteredProduct(newFilteredProduct);
+		}
+	}, [products, activeCategory]);
+
 	return (
 		<Container>
 			<Banner>
@@ -52,12 +69,27 @@ export function Menu() {
 
 			<CategoryMenu>
 				{categories.map((category) => (
-					<CategoryButton key={category.id}>{category.name}</CategoryButton>
+					<CategoryButton
+						key={category.id}
+						$isActiveCategory={category.id === activeCategory}
+						onClick={() => {
+							navegate(
+								{
+									pathname: '/cardapio',
+									search: `?categorias=${category.id}`,
+								},
+								{ replace: true },
+							);
+							setActiveCategory(category.id);
+						}}
+					>
+						{category.name}
+					</CategoryButton>
 				))}
 			</CategoryMenu>
 
 			<ProductContainer>
-				{products.map((product) => (
+				{filteredProducts.map((product) => (
 					<CardProduct key={product.id} product={product} />
 				))}
 			</ProductContainer>
