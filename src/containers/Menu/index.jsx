@@ -10,15 +10,26 @@ import {
 	ProductContainer,
 } from './styles';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Menu() {
 	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
 	const [filteredProducts, setFilteredProduct] = useState([]);
-	const [activeCategory, setActiveCategory] = useState([]);
 
-	const navegate = useNavigate();
+	const navigate = useNavigate();
+
+	const { search } = useLocation();
+
+	const queryparams = new URLSearchParams(search);
+
+	const [activeCategory, setActiveCategory] = useState(() => {
+		const categotyId = +queryparams.get('categorias');
+		if (categotyId) {
+			return categotyId;
+		}
+		return 0;
+	});
 
 	useEffect(() => {
 		async function loadCategories() {
@@ -73,7 +84,7 @@ export function Menu() {
 						key={category.id}
 						$isActiveCategory={category.id === activeCategory}
 						onClick={() => {
-							navegate(
+							navigate(
 								{
 									pathname: '/cardapio',
 									search: `?categorias=${category.id}`,
