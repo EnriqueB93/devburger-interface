@@ -3,6 +3,7 @@ import { api } from '../../services/api';
 import { formatPrice } from '../../utils/formatPrice';
 import { CardProduct } from '../CardProduct';
 import {
+	BackButton,
 	Banner,
 	CategoryButton,
 	CategoryMenu,
@@ -104,6 +105,7 @@ export function Menu() {
 					<CardProduct key={product.id} product={product} />
 				))}
 			</ProductContainer>
+			<BackButton to="/">Voltar</BackButton>
 		</Container>
 	);
 }

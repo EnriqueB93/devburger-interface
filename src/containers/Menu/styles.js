@@ -79,3 +79,14 @@ max-width: 1280px;
 margin: 50px auto;
 
 `;
+
+export const BackButton = styled(Link)`
+font-family: Poppins;
+font-weight: 600;
+font-size: 16px;
+text-decoration: none;
+display: flex;
+align-items: center;
+justify-content: center;
+padding-bottom:50px
+`;
