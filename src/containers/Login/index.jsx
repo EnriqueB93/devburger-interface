@@ -19,6 +19,7 @@ import {
 
 import Logo from '../../assets/Logo.svg';
 import { Button } from '../../components/Button';
+import { useUser } from '../../hooks/UserContext';
 
 const schema = yup
 	.object({
@@ -35,6 +36,7 @@ const schema = yup
 
 export function Login() {
 	const navigate = useNavigate();
+	const { putUserData } = useUser();
 
 	const {
 		register,
@@ -48,10 +50,7 @@ export function Login() {
 
 	const onSubmit = async (data) => {
 		try {
-			const {
-				status,
-				data: { Token },
-			} = await api.post(
+			const { status, data: userData } = await api.post(
 				'/session',
 				{
 					email: data.email,
@@ -72,8 +71,7 @@ export function Login() {
 			} else {
 				throw new Error();
 			}
-			console.log(status);
-			localStorage.setItem('token', Token);
+			putUserData(userData);
 		} catch (error) {
 			toast.error('Falha no sistema');
 		}
