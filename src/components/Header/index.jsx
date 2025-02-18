@@ -1,3 +1,6 @@
+import { useNavigate, useResolvedPath } from 'react-router-dom';
+import { useUser } from '../../hooks/UserContext';
+
 import {
 	Container,
 	Content,
@@ -12,13 +15,26 @@ import {
 import { ShoppingCart, User } from '@phosphor-icons/react';
 
 export function Header() {
+	const navigate = useNavigate();
+	const { pathname } = useResolvedPath();
+	const { logout, userInf } = useUser();
+
+	function logoutUser() {
+		logout();
+		navigate('/login');
+	}
 	return (
 		<Container>
 			<Content>
 				<Navigation>
 					<div>
-						<HeaderLink>Home</HeaderLink>
-						<HeaderLink>Cardápio</HeaderLink>
+						<HeaderLink to="/" $isActive={pathname === '/'}>
+							Home
+						</HeaderLink>
+						<hr />
+						<HeaderLink to="/cardapio" $isActive={pathname === '/cardapio'}>
+							Cardápio
+						</HeaderLink>
 					</div>
 				</Navigation>
 				<Option>
@@ -26,14 +42,14 @@ export function Header() {
 						<User color="#fff" size={30} />
 						<div>
 							<p>
-								Olá, <span>Enrique</span>
+								Olá, <span> {userInf.name}</span>
 							</p>
-							<Logout>Sair</Logout>
+							<Logout onClick={logoutUser}>Sair</Logout>
 						</div>
 					</Profile>
 					<LinkContainer>
 						<ShoppingCart color="#fff" size={30} />
-						<HeaderLink>Carrinho</HeaderLink>
+						<HeaderLink to="/carrinho">Carrinho</HeaderLink>
 					</LinkContainer>
 				</Option>
 			</Content>
