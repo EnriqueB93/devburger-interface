@@ -11,6 +11,8 @@ import {
 	ProductContainer,
 } from './styles';
 
+import { Header } from '../../components/Header/index';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Menu() {
@@ -68,6 +70,8 @@ export function Menu() {
 
 	return (
 		<Container>
+			<Header />
+
 			<Banner>
 				<h1>
 					O MELHOR
