@@ -14,6 +14,7 @@ import {
 import { Header } from '../../components/Header/index';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Footer } from '../../components/Footer';
 
 export function Menu() {
 	const [categories, setCategories] = useState([]);
@@ -110,6 +111,8 @@ export function Menu() {
 				))}
 			</ProductContainer>
 			<BackButton to="/">Voltar</BackButton>
+
+			<Footer />
 		</Container>
 	);
 }
