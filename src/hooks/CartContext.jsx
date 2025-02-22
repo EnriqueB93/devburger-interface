@@ -5,12 +5,73 @@ const CartContext = createContext({});
 export const CartProvider = ({ children }) => {
 	const [cartProducts, setCartproducts] = useState([]);
 
-	const putProductInCart = (product) => {};
-	const clearCart = (product) => {};
-	const deleteProduct = (product) => {};
-	const increaseProduct = (productid) => {};
-	const decreaseProduct = (productid) => {};
+	const putProductInCart = (product) => {
+		const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id);
 
+		let newProductInCart = [...cartProducts];
+
+		if (cartIndex >= 0) {
+			newProductInCart = cartProducts;
+
+			newProductInCart[cartIndex].quantity =
+				newProductInCart[cartIndex].quantity + 1;
+
+			setCartproducts(newProductInCart);
+		} else {
+			product.quantity = 1;
+			newProductInCart = [...cartProducts, product];
+
+			setCartproducts(newProductInCart);
+		}
+		updateLocalStorage(newProductInCart);
+	};
+
+	const clearCart = (product) => {
+		setCartproducts([]);
+		updateLocalStorage([]);
+	};
+
+	const deleteProduct = (productId) => {
+		const newCart = cartProducts.filter((prd) => prd.id !== product.id);
+
+		setCartproducts(newCart);
+	};
+
+	const increaseProduct = (productId) => {
+		const newCart = cartProducts.map((prd) => {
+			return prd.id === productId
+				? { ...prd, quantity: prd.quantity + 1 }
+				: prd;
+		});
+		setCartproducts(newCart);
+		updateLocalStorage(newCart);
+	};
+
+	const decreaseProduct = (productId) => {
+		const cartIndex = cartProducts.findIndex((prd) => prd.id === productId);
+		if (cartProducts[cartIndex].quantity > 1) {
+			const newCart = cartProducts.map((prd) => {
+				return prd.id === productId
+					? { ...prd, quantity: prd.quantity - 1 }
+					: prd;
+			});
+			setCartproducts(newCart);
+			updateLocalStorage(newCart);
+		} else {
+			deleteProduct(productId);
+		}
+	};
+
+	useEffect(() => {
+		const clientCartData = localStorage.getItem('devburguer:cartinfo');
+		if (clientCartData) {
+			setCartproducts(JSON.parse(clientCartData));
+		}
+	}, []);
+
+	const updateLocalStorage = (products) => {
+		localStorage.setItem('devburguer:cartinfo', JSON.stringify(products));
+	};
 	return (
 		<CartContext.Provider
 			value={{
@@ -27,7 +88,7 @@ export const CartProvider = ({ children }) => {
 	);
 };
 
-export const seCrt = () => {
+export const useCart = () => {
 	const context = useContext(CartContext);
 
 	if (!context) {
