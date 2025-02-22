@@ -14,6 +14,5 @@ p{
   font-weight: lighter;
   font-size: 14px;
 
-
 }
 `;
