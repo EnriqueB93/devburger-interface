@@ -56,7 +56,7 @@ export const Title = styled.h2`
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr, 20%;
+  grid-template-columns: 1fr 30%;
   gap: 40px;
   padding: 40px;
   width: 100%;
