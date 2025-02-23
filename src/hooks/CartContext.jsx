@@ -32,9 +32,10 @@ export const CartProvider = ({ children }) => {
 	};
 
 	const deleteProduct = (productId) => {
-		const newCart = cartProducts.filter((prd) => prd.id !== product.id);
+		const newCart = cartProducts.filter((prd) => prd.id !== productId);
 
 		setCartproducts(newCart);
+		updateLocalStorage(newCart);
 	};
 
 	const increaseProduct = (productId) => {
