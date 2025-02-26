@@ -12,7 +12,7 @@ import { Container } from './styles';
 export function CartResume() {
 	const [finalPrice, setFinalPrice] = useState(0);
 	const [deriveryTax] = useState(500);
-	const { cartProducts, clearCart } = useCart();
+	const { cartProducts } = useCart();
 
 	const navigate = useNavigate();
 
@@ -47,30 +47,6 @@ export function CartResume() {
 				theme: 'light',
 			});
 		}
-
-		// try {
-		// 	const { status } = await api.post(
-		// 		'/orders',
-		// 		{ products },
-
-		// 		{ validateStatus: () => true },
-		// 	);
-
-		// 	if (status === 200 || status === 201) {
-		// 		setTimeout(() => {
-		// 			navigate('/');
-		// 		}, 2000);
-		// 		clearCart();
-		// 		toast.success('Pedido realizado com sucesso!');
-		// 	} else if (status === 409) {
-		// 		toast.error('Falha ao realizar o seo pedido.');
-		// 	} else {
-		// 		throw new Error();
-		// 	}
-		// 	console.log(status);
-		// } catch (error) {
-		// 	toast.error('Falha no sistema');
-		// }
 	};
 
 	return (

@@ -1,8 +1,8 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { useLocation } from 'react-router-dom';
-import { CheckoutForm } from '../../components/CheckoutForm';
 
-import { stripePromise } from '../../config/stripe/stripeConfig';
+import { CheckoutForm } from '../../components';
+import stripePromise from '../../config/stripe/stripeConfig';
 
 export function Checkout() {
 	const {
@@ -14,10 +14,8 @@ export function Checkout() {
 	}
 
 	return (
-		<div>
-			<Elements stripe={stripePromise} options={clientSecret}>
-				<CheckoutForm />
-			</Elements>
-		</div>
+		<Elements stripe={stripePromise} options={{ clientSecret }}>
+			<CheckoutForm />
+		</Elements>
 	);
 }
