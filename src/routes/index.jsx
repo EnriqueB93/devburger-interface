@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import {
 	Cart,
 	Checkout,
-	CompletPayment,
+	CompletePayment,
 	Home,
 	Login,
 	Menu,
@@ -36,6 +36,6 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/complete',
-		element: <CompletPayment />,
+		element: <CompletePayment />,
 	},
 ]);

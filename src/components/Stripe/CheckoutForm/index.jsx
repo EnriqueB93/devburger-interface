@@ -81,7 +81,9 @@ export function CheckoutForm() {
 				toast.error('Falha no sistema');
 			}
 		} else {
-			toast.error('Falha ao realizar o pedido');
+			navigate(
+				`/complete?payment_intent_client_secret=${paymentIntent.client_secret}`,
+			);
 		}
 
 		setIsLoading(false);
