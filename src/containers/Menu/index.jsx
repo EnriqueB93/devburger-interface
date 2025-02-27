@@ -11,10 +11,7 @@ import {
 	ProductContainer,
 } from './styles';
 
-import { Header } from '../../components/Header/index';
-
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Footer } from '../../components/Footer';
 
 export function Menu() {
 	const [categories, setCategories] = useState([]);
@@ -71,8 +68,6 @@ export function Menu() {
 
 	return (
 		<Container>
-			<Header />
-
 			<Banner>
 				<h1>
 					O MELHOR
@@ -111,8 +106,6 @@ export function Menu() {
 				))}
 			</ProductContainer>
 			<BackButton to="/">Voltar</BackButton>
-
-			<Footer />
 		</Container>
 	);
 }
