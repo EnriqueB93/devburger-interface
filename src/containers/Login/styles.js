@@ -47,7 +47,7 @@ height: 100%;
 
 p{
     font-size: 18px;
-    color:#fff;
+    color:${(props) => props.theme.white};
     font-weight: 800;
 
   a{
@@ -65,10 +65,10 @@ font-weight: 400;
 font-size: 40px;
 line-height: 40px;
 text-align: center;
-color: #FFF;
+color: ${(props) => props.theme.white};
 
 span{
-    color: #9758A6;
+    color: ${(props) => props.theme.purple};
 }
 
 `;
@@ -92,7 +92,7 @@ gap: 10px;
 width: 100%;
 
 label{
-    color: #fff;
+    color: ${(props) => props.theme.white};
     font-weight: 600;
     font-size: 18px;
 }
@@ -115,6 +115,6 @@ label{
 export const Link = styled(ReactLink)`
 
 text-decoration: none;
-color: #fff;
+color: ${(props) => props.theme.white};
 
 `;

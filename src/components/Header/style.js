@@ -5,7 +5,7 @@ export const Container = styled.div`
 
 width: 100%;
 height: 72px;
-background-color: #1f1f1f;
+background-color: ${(props) => props.theme.mainBlack};
 padding: 0 56px;
 
 `;
@@ -36,22 +36,22 @@ div{
 
     hr{
         height: 24px;
-        border: 1px solid #625E5E;
+        border: 1px solid ${(props) => props.theme.sdarkGray};
     }
 }
 `;
 export const HeaderLink = styled(Link)`
-color: ${(props) => (props.$isActive ? '#9758A6' : ' #fff')};
-border-bottom: ${(props) => (props.$isActive ? '1px solid #9758a6' : 'none')};
-text-decoration: none;
-font-family: Poppins;
-font-size: 14px;
+  color: ${(props) => (props.$isActive ? props.theme.purple : props.theme.white)};
+  border-bottom: ${(props) => (props.$isActive ? `1px solid ${props.theme.purple}` : 'none')};
+  text-decoration: none;
+  font-family: Poppins;
+  font-size: 14px;
 
-&:hover{
-color: #9758A6;
-}
-
+  &:hover {
+    color: ${(props) => props.theme.purple};
+  }
 `;
+
 export const Option = styled.div`
 display: flex;
 align-items: center;
@@ -66,13 +66,13 @@ gap: 15px;
 
 
  p{
-  color: #fff;
+  color: ${(props) => props.theme.white};
   text-decoration: none;
  font-family: Poppins;
  font-size: 14px;}
 
 span{
-    color: #9758A6;
+    color: ${(props) => props.theme.purple};
 
 }
 `;

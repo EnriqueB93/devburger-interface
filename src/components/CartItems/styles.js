@@ -20,14 +20,14 @@ font-size: 21px;
 font-weight: bold;
 width: 32px;
 height: 32px;
-background-color: #9758A6;
-color: #fff;
+background-color: ${(props) => props.theme.purple};
+color: ${(props) => props.theme.white};
 border-radius: 5px;
 border: none;
 transition: all 0.4ms;
 
 &:hover{
-    background-color: #6f357c;
+    background-color: ${(props) => props.theme.secondDarkPurple};
 }
 
 }

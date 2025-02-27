@@ -6,7 +6,7 @@ display: flex;
 align-items: center;
 flex-direction: column;
 gap: 40px;
-background-color: #ffffff;
+background-color: ${(props) => props.theme.white}fff;
 border-radius: 29px;
 padding: 25px;
 cursor: grab;
@@ -27,7 +27,7 @@ font-family: Poppins;
 font-size: 18px;
 font-weight: 700;
 line-height: 14.58px;
-color: #FF8C05;
+color: ${(props) => props.theme.orange};
 margin-top: 40px;
 }
 
@@ -36,7 +36,7 @@ font-family: Poppins;
 font-size: 18px;
 font-weight: 700;
 line-height: 14.58px;
-color: #363636;
+color: ${(props) => props.theme.black};
 
 }
 

@@ -6,7 +6,7 @@ import Background from '../../assets/bg.svg';
 export const Container = styled.div`
 width: 100%;
 min-height: 100vh;
-background-color: #f0f0f0;
+background-color: ${(props) => props.theme.secondWhite};
 background:linear-gradient(
     rgba(255,255,255,0.5),
     rgba(255,255,255,0.5)),
@@ -21,7 +21,7 @@ height: 480px;
 
 
 background: url("${BannerHamburger}") no-repeat;
-background-color: #1f1f1f;
+background-color: ${(props) => props.theme.mainBlack};
 background-position: center;
 background-size: cover;
 position: relative;
@@ -29,7 +29,7 @@ position: relative;
 h1{
     font-family: Road Rage;
     font-weight: 400;
-    color: #fff;
+    color: ${(props) => props.theme.white};
     font-size: 80px;
     line-height:65.94px;
     text-align:center;
@@ -59,7 +59,7 @@ margin-top: 30px;
 export const CategoryButton = styled(Link)`
 
 font-family: Poppins;
-color:${(props) => (props.$isActiveCategory ? '#9758a6' : '#7b7d7d ')};
+color:${(props) => (props.$isActiveCategory ? (props) => props.theme.purple : '#7b7d7d ')};
 text-decoration: none;
 font-size: 24px;
 border-bottom:${(props) => props.$isActiveCategory && '3px solid #9758a6'} ;

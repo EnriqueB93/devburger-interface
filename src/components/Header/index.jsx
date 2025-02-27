@@ -39,7 +39,7 @@ export function Header() {
 				</Navigation>
 				<Option>
 					<Profile>
-						<User color="#fff" size={30} />
+						<User color="${(props) => props.theme.white}" size={30} />
 						<div>
 							<p>
 								Olá, <span> {userInf.name}</span>
@@ -48,7 +48,7 @@ export function Header() {
 						</div>
 					</Profile>
 					<LinkContainer>
-						<ShoppingCart color="#fff" size={30} />
+						<ShoppingCart color="${(props) => props.theme.white}" size={30} />
 						<HeaderLink to="/carrinho">Carrinho</HeaderLink>
 					</LinkContainer>
 				</Option>

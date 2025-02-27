@@ -11,14 +11,19 @@ import stripePromise from './config/stripe/stripeConfig.js';
 import AppProvider from './hooks/index.jsx';
 import GlobalStyles from './styles/globalStyles.js';
 
+import { ThemeProvider } from 'styled-components';
+import { standardTheme } from './styles/themes/standard.js';
+
 createRoot(document.getElementById('root')).render(
 	<StrictMode>
-		<AppProvider>
-			<GlobalStyles />
-			<Elements stripe={stripePromise}>
-				<RouterProvider router={router} />
-			</Elements>
-			<ToastContainer position="top-right" autoClose={2000} theme="dark" />
-		</AppProvider>
+		<ThemeProvider theme={standardTheme}>
+			<AppProvider>
+				<GlobalStyles />
+				<Elements stripe={stripePromise}>
+					<RouterProvider router={router} />
+				</Elements>
+				<ToastContainer position="top-right" autoClose={2000} theme="dark" />
+			</AppProvider>
+		</ThemeProvider>
 	</StrictMode>,
 );

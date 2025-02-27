@@ -4,13 +4,13 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.white}fff;
   border-radius: 20px;
   margin-bottom: 20px;
 
 
   *{
-    color: #484848;
+    color: ${(props) => props.theme.secondBlack};
     font-weight: 500;
   }
 
@@ -27,8 +27,8 @@ export const Container = styled.div`
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 20px;
-      background-color: #484848;
-      color: #ffffff;
+      background-color: ${(props) => props.theme.secondBlack};
+      color: ${(props) => props.theme.white}fff;
       width: 100%;
       padding: 15px;
       text-align: center;
@@ -78,7 +78,7 @@ export const Container = styled.div`
     padding: 20px;
 
     *{
-        color: #484848;
+        color: ${(props) => props.theme.secondBlack};
         font-weight: 700;
     }
   }

@@ -6,7 +6,7 @@ import Texture from '../../assets/texture.svg';
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: ${(props) => props.theme.secondWhite};
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -38,7 +38,7 @@ export const Title = styled.h2`
   text-align: center;
   font-weight: 800;
   font-size: 32px;
-  color: #61a120;
+  color: ${(props) => props.theme.gren};
   position: relative;
   padding: 20px 0;
   margin-bottom: 40px;
@@ -47,7 +47,7 @@ export const Title = styled.h2`
     content: '';
     height: 4px;
     width: 56px;
-    background-color: #9758a6;
+    background-color: ${(props) => props.theme.purple};
     position: absolute;
     bottom: 0px;
     left: calc(50% - 28px);

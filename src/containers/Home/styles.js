@@ -16,7 +16,7 @@ export const Banner = styled.div`
     position: absolute;
     top: 10%;
     right: 20%;
-    color: #f4f4f4;
+    color: ${(props) => props.theme.darkWhite};
   }
 `;
 export const Container = styled.section`

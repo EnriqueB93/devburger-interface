@@ -16,7 +16,7 @@ line-height: 48px;
 text-align: center;
 font-weight: 800;
 font-size:32px;
-color: #9758A6;
+color: ${(props) => props.theme.purple};
 position: relative;
 padding: 20px 0;
 margin-bottom: 40px;
@@ -26,7 +26,7 @@ margin-bottom: 40px;
     content: "";
     height: 4px;
     width: 56px;
-    background-color: #9758A6;
+    background-color: ${(props) => props.theme.purple};
     position: absolute;
     bottom: 0px;
     left: calc(50% - 28px);
@@ -51,7 +51,7 @@ export const CategoryButton = styled(Link)`
 
     font-family: Poppins;
     line-height: 33.68px;
-    color: #fff;
+    color: ${(props) => props.theme.white};
     padding: 10px 37px;
     background-color:rgba(0, 0, 0, 0.49);
     border-radius: 30px;
@@ -62,7 +62,7 @@ export const CategoryButton = styled(Link)`
     text-decoration: none;
 
     &:hover{
-     background-color:#9758A6;   
+     background-color:${(props) => props.theme.purple};   
     
     
     }
