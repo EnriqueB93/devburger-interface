@@ -63,7 +63,11 @@ export function Login() {
 
 			if (status === 200 || status === 201) {
 				setTimeout(() => {
-					navigate('/');
+					if (userData.admin) {
+						navigate('/admin/home');
+					} else {
+						navigate('/');
+					}
 				}, 2000);
 				toast.success('Seja bem-vindo(a)');
 			} else if (status === 409) {

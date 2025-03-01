@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import {
+	Admin,
 	Cart,
 	Checkout,
 	CompletePayment,
@@ -8,6 +9,7 @@ import {
 	Menu,
 	Register,
 } from '../containers';
+import { AdminLayout } from '../layouts/adminLayout';
 import { UserLayout } from '../layouts/userLayout';
 
 export function Router() {
@@ -24,6 +26,10 @@ export function Router() {
 
 				<Route path="/login" element={<Login />} />
 				<Route path="/cadastro" element={<Register />} />
+
+				<Route path="/admin" element={<AdminLayout />}>
+					<Route path="/admin/home" element={<Admin />} />
+				</Route>
 			</Routes>
 		</>
 	);
