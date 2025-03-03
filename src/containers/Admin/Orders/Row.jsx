@@ -29,39 +29,38 @@ export function Row(props) {
 					</IconButton>
 				</TableCell>
 				<TableCell component="th" scope="row">
-					{row.name}
+					{row.orderId}
 				</TableCell>
-				<TableCell align="right">{row.calories}</TableCell>
-				<TableCell align="right">{row.fat}</TableCell>
-				<TableCell align="right">{row.carbs}</TableCell>
-				<TableCell align="right">{row.protein}</TableCell>
+				<TableCell align="right">{row.name}</TableCell>
+				<TableCell align="right">{row.date}</TableCell>
+				<TableCell align="right">{row.status}</TableCell>
 			</TableRow>
 			<TableRow>
 				<TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
 					<Collapse in={open} timeout="auto" unmountOnExit>
 						<Box sx={{ margin: 1 }}>
 							<Typography variant="h6" gutterBottom component="div">
-								History
+								pedido
 							</Typography>
 							<Table size="small" aria-label="purchases">
 								<TableHead>
 									<TableRow>
-										<TableCell>Date</TableCell>
-										<TableCell>Customer</TableCell>
-										<TableCell align="right">Amount</TableCell>
-										<TableCell align="right">Total price ($)</TableCell>
+										<TableCell>Quatidade</TableCell>
+										<TableCell>producto</TableCell>
+										<TableCell>categoris</TableCell>
+										<TableCell>_</TableCell>
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									{row.history.map((historyRow) => (
-										<TableRow key={historyRow.date}>
+									{row.products.map((products) => (
+										<TableRow key={products._id}>
 											<TableCell component="th" scope="row">
-												{historyRow.date}
+												{products.quantity}
 											</TableCell>
-											<TableCell>{historyRow.customerId}</TableCell>
-											<TableCell align="right">{historyRow.amount}</TableCell>
-											<TableCell align="right">
-												{Math.round(historyRow.amount * row.price * 100) / 100}
+											<TableCell>{products.name}</TableCell>
+											<TableCell>{products.category}</TableCell>
+											<TableCell>
+												<img src={products.url} alt={products.name} />
 											</TableCell>
 										</TableRow>
 									))}
@@ -77,18 +76,19 @@ export function Row(props) {
 
 Row.propTypes = {
 	row: PropTypes.shape({
-		calories: PropTypes.number.isRequired,
-		carbs: PropTypes.number.isRequired,
-		fat: PropTypes.number.isRequired,
-		history: PropTypes.arrayOf(
+		orderId: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		date: PropTypes.string.isRequired,
+		products: PropTypes.arrayOf(
 			PropTypes.shape({
-				amount: PropTypes.number.isRequired,
-				customerId: PropTypes.string.isRequired,
-				date: PropTypes.string.isRequired,
+				category: PropTypes.number.isRequired,
+				_id: PropTypes.string.isRequired,
+				name: PropTypes.string.isRequired,
+				price: PropTypes.number.isRequired,
+				quantity: PropTypes.string.isRequired,
+				url: PropTypes.string.isRequired,
 			}),
 		).isRequired,
-		name: PropTypes.string.isRequired,
-		price: PropTypes.number.isRequired,
-		protein: PropTypes.number.isRequired,
+		status: PropTypes.string.isRequired,
 	}).isRequired,
 };

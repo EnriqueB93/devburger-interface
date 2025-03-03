@@ -19,15 +19,13 @@ export function Menu() {
 	const [filteredProducts, setFilteredProduct] = useState([]);
 
 	const navigate = useNavigate();
-
 	const { search } = useLocation();
-
 	const queryparams = new URLSearchParams(search);
 
 	const [activeCategory, setActiveCategory] = useState(() => {
-		const categotyId = +queryparams.get('categorias');
-		if (categotyId) {
-			return categotyId;
+		const categoryId = +queryparams.get('categorias');
+		if (categoryId) {
+			return categoryId;
 		}
 		return 0;
 	});
