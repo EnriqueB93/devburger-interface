@@ -31,9 +31,9 @@ export function Row(props) {
 				<TableCell component="th" scope="row">
 					{row.orderId}
 				</TableCell>
-				<TableCell align="right">{row.name}</TableCell>
-				<TableCell align="right">{row.date}</TableCell>
-				<TableCell align="right">{row.status}</TableCell>
+				<TableCell>{row.name}</TableCell>
+				<TableCell>{row.date}</TableCell>
+				<TableCell>{row.status}</TableCell>
 			</TableRow>
 			<TableRow>
 				<TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
