@@ -1,5 +1,5 @@
-export function formatData(data) {
-	return Date(data).toLocalString('pt-BR', {
+export function formatData(date) {
+	return new Date(date).toLocaleString('pt-BR', {
 		month: 'short',
 		day: '2-digit',
 		hour: '2-digit',

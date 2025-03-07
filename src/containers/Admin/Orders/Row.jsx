@@ -10,7 +10,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+
 import { useState } from 'react';
+import { formatData } from '../../../utils/formatData';
+import { ProductImage } from './styles';
 
 export function Row(props) {
 	const { row } = props;
@@ -32,7 +35,7 @@ export function Row(props) {
 					{row.orderId}
 				</TableCell>
 				<TableCell>{row.name}</TableCell>
-				<TableCell>{row.date}</TableCell>
+				<TableCell>{formatData(row.date)}</TableCell>
 				<TableCell>{row.status}</TableCell>
 			</TableRow>
 			<TableRow>
@@ -60,7 +63,7 @@ export function Row(props) {
 											<TableCell>{products.name}</TableCell>
 											<TableCell>{products.category}</TableCell>
 											<TableCell>
-												<img src={products.url} alt={products.name} />
+												<ProductImage src={products.url} alt={products.name} />
 											</TableCell>
 										</TableRow>
 									))}
