@@ -12,12 +12,18 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
 import { useState } from 'react';
+import { api } from '../../../services/api';
 import { formatData } from '../../../utils/formatData';
-import { ProductImage } from './styles';
+import { OrderStatusOptions } from './orderStatusOptions';
+import { ProductImage, SelectStatus } from './styles';
 
 export function Row(props) {
 	const { row } = props;
 	const [open, setOpen] = useState(false);
+
+	async function newStatusOrder(id, status) {
+		await api.put(`/orders/${id}`, { status });
+	}
 
 	return (
 		<>
@@ -36,7 +42,16 @@ export function Row(props) {
 				</TableCell>
 				<TableCell>{row.name}</TableCell>
 				<TableCell>{formatData(row.date)}</TableCell>
-				<TableCell>{row.status}</TableCell>
+				<TableCell>
+					<SelectStatus
+						options={OrderStatusOptions.filter((status) => status.id !== 0)}
+						placeholder="Status"
+						defaultValue={OrderStatusOptions.find(
+							(status) => status.value === row.status || null,
+						)}
+						onChange={(status) => newStatusOrder(row.orderId, status.value)}
+					/>
+				</TableCell>
 			</TableRow>
 			<TableRow>
 				<TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -84,7 +99,7 @@ Row.propTypes = {
 		date: PropTypes.string.isRequired,
 		products: PropTypes.arrayOf(
 			PropTypes.shape({
-				category: PropTypes.number.isRequired,
+				category: PropTypes.string.isRequired,
 				_id: PropTypes.string.isRequired,
 				name: PropTypes.string.isRequired,
 				price: PropTypes.number.isRequired,
