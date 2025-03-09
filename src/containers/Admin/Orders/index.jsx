@@ -58,7 +58,12 @@ export function Orders() {
 				</TableHead>
 				<TableBody>
 					{rows.map((row) => (
-						<Row key={row.orderId} row={row} />
+						<Row
+							key={row.orderId}
+							row={row}
+							orders={orders}
+							setOrders={setOrders}
+						/>
 					))}
 				</TableBody>
 			</Table>
