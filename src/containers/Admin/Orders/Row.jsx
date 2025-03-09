@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../../services/api';
 import { formatData } from '../../../utils/formatData';
 import { OrderStatusOptions } from './orderStatusOptions';
@@ -64,6 +64,7 @@ export function Row({ row, orders, setOrders }) {
 						)}
 						onChange={(status) => newStatusOrder(row.orderId, status.value)}
 						isLoading={loading}
+						menuPortalTarget={document.body}
 					/>
 				</TableCell>
 			</TableRow>

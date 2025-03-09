@@ -59,6 +59,22 @@ export function Orders() {
 		setActiveStatus(status.id);
 	}
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		if (activeStatus === 0) {
+			setFilterdOrders(orders);
+		} else {
+			const statusIndex = OrderStatusOptions.findIndex(
+				(item) => item.id === activeStatus,
+			);
+
+			const newStatusIndex = orders.filter(
+				(order) => order.status === OrderStatusOptions[statusIndex].value,
+			);
+			setFilterdOrders(newStatusIndex);
+		}
+	}, [orders]);
+
 	return (
 		<>
 			<Filter>
