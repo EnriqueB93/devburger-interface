@@ -6,7 +6,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { func } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { api } from '../../../services/api';
 import { Row } from './Row';
