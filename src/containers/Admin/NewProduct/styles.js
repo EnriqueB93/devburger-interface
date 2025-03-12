@@ -51,3 +51,7 @@ export const LabelUpload = styled.label`
   }
 `;
 export const SelectCategory = styled(Select)``;
+
+export const ErrorMessage = styled.span`
+  color: ${(props) => props.theme.darkRed};
+`;
