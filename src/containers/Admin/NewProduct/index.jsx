@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { api } from '../../../services/api';
 
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Button } from '../../../components/Button';
 import {
 	Container,
@@ -21,9 +22,27 @@ import {
 const schema = yup
 	.object({
 		name: yup.string().required('Digite o nome do produto'),
-		price: yup.number().positive().required('Digite o preço do produto'),
-		category: yup.object().required('Escolho uma categoria'),
-		file: yup.mixed(),
+		price: yup
+			.number()
+			.positive()
+			.required('Digite o preço do produto')
+			.typeError('Digite o preço do produto'),
+		category: yup.object().required('Escolha uma categoria'),
+		file: yup
+			.mixed()
+			.test('required', 'Escolha um arquivo para continuar', (value) => {
+				return value && value.length > 0;
+			})
+			.test('fileSize', 'Carregue arquivos ate 5mb', (value) => {
+				return value && value.length > 0 && value[0].size <= 5000000;
+			})
+			.test('type', 'Carregue apenas imagens PNG ou JPEG ', (value) => {
+				return (
+					value &&
+					value.length > 0 &&
+					(value[0].type === 'image/jpeg' || value[0].type === 'image/png')
+				);
+			}),
 	})
 	.required();
 
@@ -43,11 +62,25 @@ export function NewProduct() {
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = async (data) => {
+		const productFormData = new FormData();
+
+		productFormData.append('name', data.name);
+		productFormData.append('price', data.price * 100);
+		productFormData.append('category_id', data.category.id);
+		productFormData.append('file', data.file[0]);
+
+		await toast.promise(api.post('/products', productFormData), {
+			pending: 'adicionando o product...',
+			success: 'Produto criado con suceso',
+			error: 'Falha ao adicionar producto tente novamente',
+		});
+	};
 	return (
 		<Container>
 			<Form onSubmit={handleSubmit(onSubmit)}>
@@ -67,12 +100,13 @@ export function NewProduct() {
 					<LabelUpload>
 						<FileImage />
 						<input
+							type="file"
 							{...register('file')}
 							accept="image/png, image/jpeg"
 							onChange={(value) => {
 								setfileName(value.target.files[0]?.name);
+								register('file').onChange(value);
 							}}
-							type="file"
 						/>
 						{fileName || 'Upload do Produto'}
 					</LabelUpload>
@@ -84,7 +118,7 @@ export function NewProduct() {
 					<Controller
 						name="category"
 						control={control}
-						render={(field) => (
+						render={({ field }) => (
 							<SelectCategory
 								{...field}
 								options={categories}
@@ -95,6 +129,7 @@ export function NewProduct() {
 							/>
 						)}
 					/>
+					<ErrorMessage>{errors.category?.message}</ErrorMessage>
 				</InputGrup>
 
 				<Button>Adicionar Produto</Button>
