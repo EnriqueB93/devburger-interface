@@ -35,9 +35,12 @@ Abaixo estão as tecnologias e ferramentas utilizadas no projeto:
    ```bash
    yarn install
 
-3. Inicie o servidor: Para rodar o servidor localmente, use o comando:
+3. Se você tem o Docker instalado, use o comando abaixo para rodar os containers necessários para o banco de dados e o ambiente de desenvolvimento:
+   ```bash
+   docker-compose up -d
+
+4. Inicie o servidor: Para rodar o servidor localmente, use o comando:
    ```bash
    yarn dev
-
 
 
