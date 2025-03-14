@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { Button } from '../../../components/Button';
 import {
 	Container,
+	ContainerCheckbox,
 	ErrorMessage,
 	Form,
 	Input,
@@ -54,7 +55,6 @@ export function NewProduct() {
 		async function loadCategories() {
 			const { data } = await api.get('/categories');
 			setCategories(data);
-			console.log(data);
 		}
 		loadCategories();
 	}, []);
@@ -74,6 +74,7 @@ export function NewProduct() {
 		productFormData.append('price', data.price * 100);
 		productFormData.append('category_id', data.category.id);
 		productFormData.append('file', data.file[0]);
+		productFormData.append('offer', data.offer);
 
 		await toast.promise(api.post('/products', productFormData), {
 			pending: 'adicionando o product...',
@@ -130,6 +131,13 @@ export function NewProduct() {
 						)}
 					/>
 					<ErrorMessage>{errors.category?.message}</ErrorMessage>
+				</InputGrup>
+
+				<InputGrup>
+					<ContainerCheckbox>
+						<input type="checkbox" {...register('offer')} />
+						<LabelInput> Produto en Oferta?</LabelInput>
+					</ContainerCheckbox>
 				</InputGrup>
 
 				<Button>Adicionar Produto</Button>

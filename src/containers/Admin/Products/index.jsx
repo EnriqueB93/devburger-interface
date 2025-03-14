@@ -17,13 +17,12 @@ import { useNavigate } from 'react-router-dom';
 import { Container, EditButton, ImageProduct } from './styles';
 
 export function Products() {
-	const [product, setProduct] = useState([]);
+	const [products, setProduct] = useState([]);
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		async function loadProduct() {
 			const { data } = await api.get('/products');
-			console.log(data);
 			setProduct(data);
 		}
 		loadProduct();
@@ -36,7 +35,7 @@ export function Products() {
 		return <XCircle color="#ff3205" size="28px" />;
 	}
 
-	function editProduct() {
+	function editProduct(product) {
 		navigate('/admin/editar-producto', { state: { product } });
 	}
 
@@ -54,7 +53,7 @@ export function Products() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{product.map((product) => (
+						{products.map((product) => (
 							<TableRow
 								key={product.id}
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -70,8 +69,8 @@ export function Products() {
 									<ImageProduct src={product.url} />
 								</TableCell>
 								<TableCell align="center">
-									<EditButton>
-										<PencilSimple onClick={() => editProduct(product)} />
+									<EditButton onClick={() => editProduct(product)}>
+										<PencilSimple />
 									</EditButton>
 								</TableCell>
 							</TableRow>

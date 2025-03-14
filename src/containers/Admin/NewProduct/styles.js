@@ -54,4 +54,16 @@ export const SelectCategory = styled(Select)``;
 
 export const ErrorMessage = styled.span`
   color: ${(props) => props.theme.darkRed};
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+`;
+export const ContainerCheckbox = styled.div`
+  display: flex;
+  gap: 10px;
+
+  input {
+    cursor: pointer;
+    width: 18px;
+  }
 `;
